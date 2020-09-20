@@ -23,8 +23,8 @@ class AddForm extends Component {
       editing: false,
       update: false
     }
-    var y = document.getElementById("addDiv");
-    y.style.display = "none";
+    this.addDiv.setAttribute("class", "displayNone");
+    this.tableDiv.setAttribute("class", "displayBlock");
     this.props.dispatch({
       type: 'ADD_TEAM',
       data
@@ -37,12 +37,15 @@ class AddForm extends Component {
   }
   handleAdd = (e) => {
     e.preventDefault();
-    var x = document.getElementById("addDiv");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    var addDivClass = this.addDiv.getAttribute("class");
+    if (addDivClass === 'displayNone') {
+      this.addDiv.setAttribute("class", "displayBlock");
+      this.tableDiv.setAttribute("class", "displayNone");
     } else {
-      x.style.display = "none";
+      this.addDiv.setAttribute("class", "displayNone");
+      this.tableDiv.setAttribute("class", "displayBlock");
     }
+    //this.addDiv.setAttribute("class","displayBlock");
     this.btn.setAttribute("disabled", "disabled");
   }
   handleUpdate = (u) => {
@@ -55,6 +58,7 @@ class AddForm extends Component {
   }
   componentDidMount() {
     this.btn.setAttribute("disabled", "disabled");
+    this.addDiv.setAttribute("class", "displayNone");
   }
   render() {
     const selectRow = {
@@ -74,10 +78,10 @@ class AddForm extends Component {
     return (
       <div>
         <div className='displayGrid'>
-          <button onClick={this.handleAdd} className='btn'>Add</button>
-          <button onClick={this.handleUpdate} className='btn' ref={(btn) => { this.btn = btn; }}  >Update</button>
+          <button onClick={this.handleAdd} className='btn btn-outline-primary'>Add</button>
+          <button onClick={this.handleUpdate} className='btn btn-outline-primary' ref={(btn) => { this.btn = btn; }}  >Update</button>
         </div>
-        <div id="addDiv" style={{ display: 'none' }}>
+        <div id="addDiv" ref={(div) => { this.addDiv = div; }}>
           <form>
             <span className="title">Add Team</span>
             <div className='wrap-input2 validate-input'>
@@ -89,22 +93,25 @@ class AddForm extends Component {
             <div className='wrap-input2 validate-input'>
               <label>Matches:
    <input name="Matches" required type="number" ref={(input) => this.getMatches = input} className='input2'
-                />
+                  min="0" defaultValue="0" />
               </label>
             </div>
             <div className='wrap-input2 validate-input'>
               <label>Won:
-   <input name="Won" required type="number" ref={(input) => this.getWon = input} className='input2' />
+   <input name="Won" required type="number" ref={(input) => this.getWon = input} className='input2'
+                  min="0" defaultValue="0" />
               </label>
             </div>
             <div className='wrap-input2 validate-input'>
               <label>Lost:
-   <input name="Lost" required type="number" ref={(input) => this.getLost = input} className='input2' />
+   <input name="Lost" required type="number" ref={(input) => this.getLost = input} className='input2'
+                  min="0" defaultValue="0" />
               </label>
             </div>
             <div className='wrap-input2 validate-input'>
               <label>Tie:
-   <input name="Tie" required type="number" ref={(input) => this.getTie = input} className='input2' />
+   <input name="Tie" required type="number" ref={(input) => this.getTie = input} className='input2'
+                  min="0" defaultValue="0" />
               </label>
             </div>
           </form>
@@ -118,18 +125,18 @@ class AddForm extends Component {
           </div>
         ))}
         <br />
-        <div className='wrapperTable'>
-        <BootstrapTable data={this.props.posts} hover={true}
-          ref={(n) => this.node = n}
-          selectRow={selectRow}>
-          <TableHeaderColumn dataField='id' isKey={true} hidden={true} >ID</TableHeaderColumn>
-          <TableHeaderColumn className='sticky' columnClassName='sticky' dataField='name'>Team</TableHeaderColumn>
-          <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='matches'>M</TableHeaderColumn>
-          <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='won'>W</TableHeaderColumn>
-          <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='lost'>L</TableHeaderColumn>
-          <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='tie'>T/NR</TableHeaderColumn>
-          <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='points'>P</TableHeaderColumn>
-        </BootstrapTable>
+        <div className='wrapperTable' ref={(div) => { this.tableDiv = div }}>
+          <BootstrapTable data={this.props.posts} hover={true}
+            ref={(n) => this.node = n}
+            selectRow={selectRow}>
+            <TableHeaderColumn dataField='id' isKey={true} hidden={true} >ID</TableHeaderColumn>
+            <TableHeaderColumn className='sticky' columnClassName='sticky' dataField='name'>Team</TableHeaderColumn>
+            <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='matches'>M</TableHeaderColumn>
+            <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='won'>W</TableHeaderColumn>
+            <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='lost'>L</TableHeaderColumn>
+            <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='tie'>T/NR</TableHeaderColumn>
+            <TableHeaderColumn className='thHide' columnClassName='thHide' dataField='points'>P</TableHeaderColumn>
+          </BootstrapTable>
         </div>
       </div>
     );

@@ -9,18 +9,20 @@ body, html {
 	font-family: Poppins-Regular, sans-serif;
 }
 
-button {
-	outline: none !important;
-	border: none;
-	background: transparent;
-}
-
 button:hover {
 	cursor: pointer;
 }
 
 :focus {
   outline: none;
+}
+
+.displayNone{
+  display: none;
+}
+
+.displayBlock{
+  display: block;
 }
 
 .container {
@@ -59,17 +61,54 @@ button:hover {
   text-align: center;
 }
 
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
 .btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-outline-primary {
+  color: rgba(219,21,99,0.8);
+  border-color: rgba(219,21,99,0.8);
   margin: 10px;
-  font-size: 16px;
-  height: 50px;
-  width: 100px;
-  border-radius: 2px;
-  background: rgba(219,21,99,0.8);
-  background: -webkit-linear-gradient(45deg, rgba(213,0,125,0.8), rgba(229,57,53,0.8));
-  background: -o-linear-gradient(45deg, rgba(213,0,125,0.8), rgba(229,57,53,0.8));
-  background: -moz-linear-gradient(45deg, rgba(213,0,125,0.8), rgba(229,57,53,0.8));
-  background: linear-gradient(45deg, rgba(213,0,125,0.8), rgba(229,57,53,0.8));
+}
+
+.btn-outline-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(219,21,99,0.8);
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active {
+  color: #fff;
+  background-color: rgba(219,21,99,0.8);
+  border-color: rgba(219,21,99,0.8);
+}
+
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: rgba(219,21,99,0.8);
+  border-color: rgba(219,21,99,0.8);
+}
+
+.btn-outline-primary:disabled {
+  background-color: transparent;
+  color: #6E6E6DFF;
+  border-color: #6E6E6DFF;
 }
 
 .btn2 {
