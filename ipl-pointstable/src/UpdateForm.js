@@ -56,7 +56,7 @@ class UpdateForm extends Component {
             </label>
           </div>
         </form>
-        <button onClick={this.handleEdit} className='btn btn2'>Update</button>
+        <button onClick={this.handleEdit} className='btn btn-outline-primary btn2'>Update</button>
       </div>
     );
   }

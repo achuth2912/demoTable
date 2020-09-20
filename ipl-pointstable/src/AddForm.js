@@ -115,8 +115,8 @@ class AddForm extends Component {
               </label>
             </div>
           </form>
-          <button onClick={this.handleAdd} className='btn btn2'>Cancel</button>
-          <button onClick={this.handleSubmit} className='btn btn2'>Create</button>
+          <button onClick={this.handleAdd} className='btn btn-outline-primary btn2'>Cancel</button>
+          <button onClick={this.handleSubmit} className='btn btn-outline-primary btn2'>Create</button>
         </div>
         {this.props.posts.map((post) => (
           <div key={post.id}>
